@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_place_picker_mb/providers/place_provider.dart';
@@ -530,7 +530,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
                   style: TextStyle(color: Color(0xFF6C757D)),
                   textAlign: TextAlign.center,
                 ),
-                
+                SvgPicture.asset("assets/map_pin.svg")
               ],
             ),
           ),
