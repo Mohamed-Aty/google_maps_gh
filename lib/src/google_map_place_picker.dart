@@ -457,10 +457,11 @@ class GoogleMapPlacePicker extends StatelessWidget {
   Widget _defaultPlaceWidgetBuilder(
       BuildContext context, PickResult? data, SearchingState state) {
     return FloatingCard(
-      bottomPosition: MediaQuery.of(context).size.height * 0.1,
+      //* 0.1
+      bottomPosition: MediaQuery.of(context).size.height,
       leftPosition: MediaQuery.of(context).size.width * 0.15,
       rightPosition: MediaQuery.of(context).size.width * 0.15,
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width,
       borderRadius: BorderRadius.circular(12.0),
       elevation: 4.0,
       color: Theme.of(context).cardColor,
@@ -495,68 +496,65 @@ class GoogleMapPlacePicker extends StatelessWidget {
                 result.geometry!.location.lng) <=
             pickArea!.radius;
     MaterialStateColor buttonColor = MaterialStateColor.resolveWith(
-        (states) => canBePicked ? Colors.lightGreen : Colors.red);
+        (states) => canBePicked ? Color(0xFF39C1F0) : Colors.red);
     return Container(
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
           Text(
-            result.formattedAddress!,
+            "Location Details",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: Divider(color: Color(0xFFF5F5F5)),
+          ),
+          Text(
+            "Address",
             style: TextStyle(fontSize: 18),
             textAlign: TextAlign.center,
           ),
+          // Text(
+          //   result.formattedAddress!,
+          //   style: TextStyle(fontSize: 18),
+          //   textAlign: TextAlign.center,
+          // ),
           SizedBox(height: 10),
           (canBePicked && (selectText?.isEmpty ?? true)) ||
                   (!canBePicked && (outsideOfPickAreaText?.isEmpty ?? true))
-              ? SizedBox.fromSize(
-                  size: Size(56, 56), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      child: InkWell(
-                          overlayColor: buttonColor,
-                          onTap: () {
-                            if (canBePicked) {
-                              onPlacePicked!(result);
-                            }
-                          },
-                          child: Icon(
-                              canBePicked
-                                  ? Icons.check_sharp
-                                  : Icons.app_blocking_sharp,
-                              color: buttonColor)),
+              ? Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (canBePicked) {
+                        onPlacePicked!(result);
+                      }
+                    },
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(color: Colors.white),
                     ),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: buttonColor),
                   ),
                 )
-              : SizedBox.fromSize(
-                  size: Size(MediaQuery.of(context).size.width * 0.8,
-                      56), // button width and height
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Material(
-                      child: InkWell(
-                          overlayColor: buttonColor,
-                          onTap: () {
-                            if (canBePicked) {
-                              onPlacePicked!(result);
-                            }
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                  canBePicked
-                                      ? Icons.check_sharp
-                                      : Icons.app_blocking_sharp,
-                                  color: buttonColor),
-                              SizedBox.fromSize(size: new Size(10, 0)),
-                              Text(
-                                  canBePicked
-                                      ? selectText!
-                                      : outsideOfPickAreaText!,
-                                  style: TextStyle(color: buttonColor))
-                            ],
-                          )),
+              : Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (canBePicked) {
+                        onPlacePicked!(result);
+                      }
+                    },
+                    child: Text(
+                      canBePicked ? selectText! : outsideOfPickAreaText!,
+                      style: TextStyle(color: Colors.white),
                     ),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: buttonColor),
                   ),
                 )
         ],
