@@ -30,9 +30,10 @@ dependency_overrides:
   http: any
   package_info_plus: any
 
-flutter: null
+flutter:
+  uses-material-design: true
 
-assets:
+  assets:
     - assets/
 
 false_secrets:
