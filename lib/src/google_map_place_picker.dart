@@ -457,12 +457,15 @@ class GoogleMapPlacePicker extends StatelessWidget {
   Widget _defaultPlaceWidgetBuilder(
       BuildContext context, PickResult? data, SearchingState state) {
     return FloatingCard(
-      //* 0.1
-      bottomPosition: MediaQuery.of(context).size.height,
-      leftPosition: MediaQuery.of(context).size.width * 0.15,
-      rightPosition: MediaQuery.of(context).size.width * 0.15,
+      //MediaQuery.of(context).size.height * 0.01,
+      bottomPosition: 0.0,
+      leftPosition: 0.0,
+      //MediaQuery.of(context).size.width * 0.1,
+      rightPosition: 0.0,
+      //MediaQuery.of(context).size.width * 0.1,
       width: MediaQuery.of(context).size.width,
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40), topRight: Radius.circular(40)),
       elevation: 4.0,
       color: Theme.of(context).cardColor,
       child: state == SearchingState.Searching
@@ -508,13 +511,30 @@ class GoogleMapPlacePicker extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Divider(color: Color(0xFFF5F5F5)),
+            child: Divider(
+              color: Color(0xFFF5F5F5),
+              thickness: 1.5,
+            ),
           ),
-          Text(
-            "Address",
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
+          Container(
+            padding: const EdgeInsets.all(15),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFFEAECEF),
+                border: Border.all(color: Color(0xFFCED4DA))),
+            child: Row(
+              children: [
+                Text(
+                  result.formattedAddress!,
+                  style: TextStyle(color: Color(0xFF6C757D)),
+                  textAlign: TextAlign.center,
+                ),
+                
+              ],
+            ),
           ),
+
           // Text(
           //   result.formattedAddress!,
           //   style: TextStyle(fontSize: 18),
@@ -536,8 +556,10 @@ class GoogleMapPlacePicker extends StatelessWidget {
                       "Continue",
                       style: TextStyle(color: Colors.white),
                     ),
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: buttonColor),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
                   ),
                 )
               : Container(
@@ -553,10 +575,13 @@ class GoogleMapPlacePicker extends StatelessWidget {
                       canBePicked ? selectText! : outsideOfPickAreaText!,
                       style: TextStyle(color: Colors.white),
                     ),
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: buttonColor),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
                   ),
-                )
+                ),
+          SizedBox(height: 10),
         ],
       ),
     );

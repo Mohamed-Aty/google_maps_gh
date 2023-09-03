@@ -20,6 +20,7 @@ dependencies:
   tuple: ^2.0.1
   uuid: ^3.0.7
   package_info_plus: ^4.0.2
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,12 @@ dependency_overrides:
 
 flutter: null
 
+assets:
+    - assets/
+
 false_secrets:
  - /example/lib/keys.dart
  - /example/android/app/src/main/AndroidManifest.xml
  - /example/ios/Runner/AppDelegate.swift
+
+
