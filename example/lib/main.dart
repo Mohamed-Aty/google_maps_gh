@@ -384,6 +384,7 @@ class _HomePageState extends State<HomePage> {
                         onMapCreated: (GoogleMapController controller) {},
                         onCameraIdle: () {},
                         onCameraMoveStarted: () {},
+                        
                         onCameraMove: (CameraPosition position) {},
                       )),
               !_showGoogleMapInContainer ? Container() : TextField(),

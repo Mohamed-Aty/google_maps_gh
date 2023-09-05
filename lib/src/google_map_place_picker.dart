@@ -532,7 +532,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SvgPicture.asset("assets/map_pin.svg")
+               // SvgPicture.asset("assets/map_pin.svg")
               ],
             ),
           ),
