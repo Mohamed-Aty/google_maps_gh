@@ -525,10 +525,12 @@ class GoogleMapPlacePicker extends StatelessWidget {
                 border: Border.all(color: Color(0xFFCED4DA))),
             child: Row(
               children: [
-                Text(
-                  result.formattedAddress!,
-                  style: TextStyle(color: Color(0xFF6C757D)),
-                  textAlign: TextAlign.center,
+                Expanded(
+                  child: Text(
+                    result.formattedAddress!,
+                    style: TextStyle(color: Color(0xFF6C757D)),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 SvgPicture.asset("assets/map_pin.svg")
               ],
