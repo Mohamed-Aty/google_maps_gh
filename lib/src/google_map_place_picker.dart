@@ -516,8 +516,8 @@ class GoogleMapPlacePicker extends StatelessWidget {
               thickness: 1.5,
             ),
           ),
-          Expanded(
-              child: Container(
+
+          Container(
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
@@ -528,8 +528,9 @@ class GoogleMapPlacePicker extends StatelessWidget {
               result.formattedAddress!,
               style: TextStyle(color: Color(0xFF6C757D)),
               textAlign: TextAlign.center,
+              maxLines: 3,
             ),
-          )),
+          ),
 
           // Text(
           //   result.formattedAddress!,
